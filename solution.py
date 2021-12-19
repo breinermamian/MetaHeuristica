@@ -28,7 +28,23 @@ class solution:
         self.fitness = self.function.evaluate(self.cells)
 
     def randomInitialization2(self):
-        print("La que Proponemos")
+        self.cells = np.random.uniform(low=self.function.lowerbound, high=self.function.upperbound,
+                                       size=(self.size,))
+        self.fitness = self.function.evaluate(self.cells)
+        fitnesstemporal = 0.0
+        i=0
+        while i < 10:
+            self.cells = np.random.uniform(low=self.function.lowerbound, high=self.function.upperbound,
+                                           size=(self.size,))
+
+            fitnesstemporal = self.function.evaluate(self.cells)
+            #print("Valor Temporal:: ", fitnesstemporal);
+            print("Fitness:: ", self.fitness)
+            if(fitnesstemporal < self.fitness):
+                self.fitness = fitnesstemporal
+            i=i+1
+        print("Fitness:: ", self.fitness)
+
         #Generamos 5soluciones- Escogemos la mejor y la regresamos.
 
     def tweak(self, bw: float):
