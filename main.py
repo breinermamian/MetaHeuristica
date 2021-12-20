@@ -41,14 +41,13 @@ if __name__ == '__main__':
     [x, y] = myHC.evolve()'''
     mySphere = sphere(-5.0, 5.0)
     # Nuestro
-    #np.random.seed(2)
-    myHC = hillclimbing(mySphere, 2, 100, 0.5, 2, 2)
+    np.random.seed(1)
+    myHC = hillclimbing(mySphere, 5, 500, 1, 2, 2)
     [x2, y2] = myHC.evolve()
     #Profe
     #np.random.seed(2)
-
-    #myHC = hillclimbing(mySphere, 2, 100, 0.5, 1, 1)  # 2 Dimensones #penultimo es bandwitch
-    #[x, y] = myHC.evolve()
+    myHC = hillclimbing(mySphere, 5, 500, 1, 1, 1)  # 2 Dimensones #penultimo es bandwitch
+    [x, y] = myHC.evolve()
 
 
 
@@ -58,6 +57,6 @@ if __name__ == '__main__':
     plt.ylabel("Fitness")
     # plt.plot(x, y, color="red")
     # plt.plot(x2, y2, color="green")
-    #plt.plot(x, y, color="green")
+    plt.plot(x, y, color="green")
     plt.plot(x2, y2, color="black")
     plt.show()
