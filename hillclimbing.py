@@ -1,6 +1,6 @@
 from solution import solution
 import numpy as np
-
+from time import time
 
 class hillclimbing:
     def __init__(self, f, d: int, mi: int, bw: float, v : int, vTweak : int):
@@ -12,6 +12,7 @@ class hillclimbing:
         self.vT = vTweak
 
     def evolve(self):
+        starttime = time()
         x = np.arange(0, self.maxiterations)
         y = np.zeros(self.maxiterations, float)
         self.best.randomInitialization(self.valor)
@@ -22,5 +23,6 @@ class hillclimbing:
             if copyofbest.fitness < self.best.fitness:
                 self.best.from_solution(copyofbest)
             y[iteration] = self.best.fitness
-        self.best.show()
+        elapsedt = time() - starttime
+        self.best.show(elapsedt)
         return [x, y]
