@@ -40,14 +40,14 @@ class solution:
             fitnesstemporal = self.function.evaluate(self.cells)
             #print("Valor Temporal:: ", fitnesstemporal);
             #print("Fitness:: ", self.fitness)
-            if(fitnesstemporal < self.fitness):
+            if fitnesstemporal < self.fitness:
                 self.fitness = fitnesstemporal
             i=i+1
         #print("Fitness:: ", self.fitness)
 
         #Generamos 5soluciones- Escogemos la mejor y la regresamos.
     def tweak(self,bw: float,v: int):
-        if(v == 1):
+        if v == 1:
             self.tweak1(bw)
         else:
             self.tweak2(bw)
@@ -56,7 +56,7 @@ class solution:
         n = np.random.randint(1,self.size+1)#Aleatorio entre el número de dimensiones -> Mínimo 1
         bandwidths = np.random.uniform(low=-bw, high=bw, size=(n,))#Bandwihth para n dimensiones
         i=0 #Inicia el Vector desde pos 0
-        while(i<n):
+        while i < n:
             self.cells[i] = self.cells[i] + bandwidths[i]#Sumamos cada dimensión hasta n
             i=i+1
         #Si es menor del rango se asigna el limite inferior, así mismo para el superior
@@ -71,6 +71,7 @@ class solution:
         self.cells[self.cells > self.function.upperbound] = self.function.upperbound
         self.fitness = self.function.evaluate(self.cells)
 
-    def show(self):
+    def show(self, elapsedtime):
         print(self.cells)
         print(self.fitness)
+        print("Tiempo transcurrido: %0.5f seconds." % elapsedtime)
