@@ -54,10 +54,14 @@ class solution:
         while(i<n):
             self.cells[i] = self.cells[i] + bandwidths[i]#Sumamos cada dimensión hasta n
             i=i+1
-        #bandwidths = np.random.uniform(low=-bw, high=bw, size=(self.size,))
-        #self.cells = self.cells + bandwidths
-        #print("bandwidths ", bandwidths)
-        '''Si es menor del rango se asigna el limite inferior, así mismo para el superior'''
+        #Si es menor del rango se asigna el limite inferior, así mismo para el superior
+        self.cells[self.cells < self.function.lowerbound] = self.function.lowerbound
+        self.cells[self.cells > self.function.upperbound] = self.function.upperbound
+        self.fitness = self.function.evaluate(self.cells)
+
+    def tweak(self, bw: float):
+        bandwidths = np.random.uniform(low=-bw, high=bw, size=(self.size,))
+        self.cells = self.cells + bandwidths
         self.cells[self.cells < self.function.lowerbound] = self.function.lowerbound
         self.cells[self.cells > self.function.upperbound] = self.function.upperbound
         self.fitness = self.function.evaluate(self.cells)
