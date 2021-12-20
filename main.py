@@ -15,7 +15,7 @@ if __name__ == '__main__':
     # np.random.seed(5)
 
     myStep = sphere(-5.0, 5.0)
-    myHC = hillclimbing(myStep, 2, 1000, 2, 2)
+    myHC = hillclimbing(myStep, 3, 1000, 2, 2)
     [x, y] = myHC.evolve()
 
     '''
